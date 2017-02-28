@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h3>{{  timer.timeOut.counter | timecode }}<h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <button class="btn btn-success btn-lg">
+        <span class="start"
+            ng-show="!timer.timeOut.timing"
+            ng-click="timer.timeOut.start()">
+            Start
+        </span>
+        <span class="restart"
+            ng-show="timer.timeOut.timing"
+            ng-click="timer.timeOut.reset()">
+            Reset
+        </span>
+      </button>
+    </div>
+  </div>
+</div>
