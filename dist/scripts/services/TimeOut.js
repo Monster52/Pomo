@@ -3,11 +3,17 @@
     TimeOut.counter = 1500;
 
     var mytimeout;
+    
     TimeOut.timing = false;
+    TimeOut.breaking = false;
 
     TimeOut.onTimeout = function(){
         TimeOut.counter--;
         TimeOut.timing = true;
+        if(TimeOut.counter <= 0){
+          TimeOut.stop();
+          TimeOut.breaking = true;
+        }
     }
 
     TimeOut.start = function(){
@@ -20,6 +26,26 @@
         TimeOut.timing = false;
     }
 
+    TimeOut.stop = function(){
+      $interval.cancel(mytimeout);
+      TimeOut.counter = 300;
+      TimeOut.timing = false;
+    }
+
+    TimeOut.break = function(){
+      TimeOut.counter--;
+      TimeOut.breaking = true;
+      TimeOut.timing = null;
+      if(TimeOut.counter <= 0){
+        TimeOut.reset();
+        TimeOut.breaking = false;
+      }
+    }
+
+    TimeOut.startBreak = function(){
+      mytimeout = $interval(TimeOut.break,1000);
+    }
+
     return TimeOut;
   }
 
@@ -27,25 +53,3 @@
     .module("pomo")
     .factory("TimeOut", ["$interval", TimeOut])
 })();
-
-// TimeOut.counter = 1500;
-//
-// var mytimeout;
-// var timing;
-//
-// TimeOut.onTimeout = function(){
-//     TimeOut.counter--;
-//     timing = true;
-//     mytimeout = $timeout(TimeOut.onTimeout,1000);
-//
-// }
-//
-// TimeOut.start = function(){
-//   mytimeout = $timeout(TimeOut.onTimeout,1000);
-// }
-//
-// TimeOut.reset = function(){
-//     $timeout.cancel(mytimeout);
-//     TimeOut.counter = 1500;
-//
-// }

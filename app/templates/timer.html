@@ -8,15 +8,19 @@
     <div class="col-md-12 text-center">
       <button class="btn btn-success btn-lg">
         <span class="start"
-            ng-show="!timer.timeOut.timing"
+            ng-show="!timer.timeOut.timing && !timer.timeOut.breaking"
             ng-click="timer.timeOut.start()">
             Start
         </span>
         <span class="restart"
-            ng-show="timer.timeOut.timing"
+            ng-show="timer.timeOut.timing && !timer.timeOut.breaking"
             ng-click="timer.timeOut.reset()">
             Reset
         </span>
+        <span class="beaking"
+          ng-show="timer.timeOut.breaking"
+          ng-click="timer.timeOut.startBreak()">
+          Break
       </button>
     </div>
   </div>
