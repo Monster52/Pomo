@@ -13,7 +13,7 @@
             Start
         </span>
         <span class="restart"
-            ng-show="timer.timeOut.timing && !timer.timeOut.breaking"
+            ng-show="timer.timeOut.timing && timer.timeOut.breaking"
             ng-click="timer.timeOut.reset()">
             Reset
         </span>
@@ -21,6 +21,7 @@
           ng-show="timer.timeOut.breaking"
           ng-click="timer.timeOut.startBreak()">
           Break
+        </span>
       </button>
     </div>
   </div>

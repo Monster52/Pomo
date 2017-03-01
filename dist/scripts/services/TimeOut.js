@@ -1,11 +1,11 @@
 (function(){
   function TimeOut($interval){
     TimeOut.counter = 1500;
-
-    var mytimeout;
-    
     TimeOut.timing = false;
     TimeOut.breaking = false;
+
+    var mytimeout;
+    var workCount = 0;
 
     TimeOut.onTimeout = function(){
         TimeOut.counter--;
@@ -28,8 +28,16 @@
 
     TimeOut.stop = function(){
       $interval.cancel(mytimeout);
-      TimeOut.counter = 300;
-      TimeOut.timing = false;
+      workCount++;
+      console.log(workCount);
+      if( workCount < 4 ){
+        TimeOut.counter = 300;
+        TimeOut.timing = false;
+      } else {
+        TimeOut.counter = 1800;
+        TimeOut.timing = false;
+        workCount = 0;
+      }
     }
 
     TimeOut.break = function(){
