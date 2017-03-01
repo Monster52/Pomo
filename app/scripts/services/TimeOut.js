@@ -1,11 +1,14 @@
 (function(){
   function TimeOut($interval){
-    TimeOut.counter = 1500;
+    TimeOut.counter = 20; // 1500
     TimeOut.timing = false;
     TimeOut.breaking = false;
 
     var mytimeout;
     var workCount = 0;
+    var ding = new buzz.sound( "/assets/music/ding2.mp3", {
+      preload: true
+    });
 
     TimeOut.onTimeout = function(){
         TimeOut.counter--;
@@ -22,19 +25,21 @@
 
     TimeOut.reset = function(){
         $interval.cancel(mytimeout);
-        TimeOut.counter = 1500;
+        ding.play();
+        TimeOut.counter = 20; //1500
         TimeOut.timing = false;
     }
 
     TimeOut.stop = function(){
       $interval.cancel(mytimeout);
       workCount++;
-      console.log(workCount);
       if( workCount < 4 ){
-        TimeOut.counter = 300;
+        ding.play();
+        TimeOut.counter = 10; //300
         TimeOut.timing = false;
       } else {
-        TimeOut.counter = 1800;
+        ding.play();
+        TimeOut.counter = 30; //1800
         TimeOut.timing = false;
         workCount = 0;
       }
