@@ -19,6 +19,6 @@
      }
 
      angular
-         .module('pomo', ['ui.router'])
+         .module('pomo', ['firebase','ui.router'])
          .config(config);
  })();

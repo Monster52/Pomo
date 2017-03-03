@@ -1,28 +1,45 @@
-<div class="container">
+<div class="col-md-12">
   <div class="row">
-    <div class="col-md-12 text-center">
-      <h3>{{  timer.timeOut.counter | timecode }}<h3>
+    <div class="col-sm-4">
+
+      <form class="form-inline" ng-submit="createTask()">
+        <div clas="form-group">
+          <input type="text" class="form-control" placeholder="Add a Task" ng-model="task.title" />
+          <button type="submit" class="btn btn-default">Add Task</button>
+        </div>
+      </form>
+      <hr />
+      <ul class="list-group">
+        <li class="list-group-item" ng-repeat="task in tasks">{{ task.title }}</li>
+      </ul>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12 text-center">
-      <button class="btn btn-success btn-lg">
-        <span class="start"
-            ng-show="!timer.timeOut.timing && !timer.timeOut.breaking"
-            ng-click="timer.timeOut.start()">
-            Start
-        </span>
-        <span class="restart"
-            ng-show="timer.timeOut.timing && !timer.timeOut.breaking"
-            ng-click="timer.timeOut.reset()">
-            Reset
-        </span>
-        <span class="beaking"
-          ng-show="timer.timeOut.breaking"
-          ng-click="timer.timeOut.startBreak()">
-          Break
-        </span>
-      </button>
+
+
+    <div class="col-sm-8">
+      <div class="text-center">
+        <h3>{{  timer.timeOut.counter | timecode }}<h3>
+      </div>
+
+      <div class="text-center">
+        <button class="btn btn-success btn-lg">
+          <span class="start"
+              ng-show="!timer.timeOut.timing && !timer.timeOut.breaking"
+              ng-click="timer.timeOut.start()">
+              Start
+          </span>
+          <span class="restart"
+              ng-show="timer.timeOut.timing && !timer.timeOut.breaking"
+              ng-click="timer.timeOut.reset()">
+              Reset
+          </span>
+          <span class="beaking"
+            ng-show="timer.timeOut.breaking"
+            ng-click="timer.timeOut.startBreak()">
+            Break
+          </span>
+        </button>
+      </div>
+
     </div>
   </div>
 </div>
