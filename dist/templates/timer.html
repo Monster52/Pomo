@@ -2,15 +2,15 @@
   <div class="row">
     <div class="col-sm-4">
 
-      <form class="form-inline" ng-submit="createTask()">
+      <form class="form-inline" ng-submit="timer.createTask(timer.title)">
         <div clas="form-group">
-          <input type="text" class="form-control" placeholder="Add a Task" ng-model="task.title" />
+          <input type="text" class="form-control" placeholder="Add a Task" ng-model="timer.title" />
           <button type="submit" class="btn btn-default">Add Task</button>
         </div>
       </form>
       <hr />
       <ul class="list-group">
-        <li class="list-group-item" ng-repeat="task in tasks">{{ task.title }}</li>
+        <li class="list-group-item" ng-repeat="task in timer.tasks | orderBy : timer.tasks.createdAt : true">{{ task.title }}</li>
       </ul>
     </div>
 
